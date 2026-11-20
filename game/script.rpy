@@ -1,5 +1,9 @@
 ﻿# Coloca el código de tu juego en este archivo.
 
+#Canciones
+define msc1 = "audio/A_Pocketful_of_Mischief.mp3"
+define msc2 = "audio/Seven_Iron_Locks.mp3"
+
 #imágenes personajes
 
 #Fondos para el juego 
@@ -32,6 +36,9 @@ transform flynn_pos:
 # El juego comienza aquí.
 
 label start:
+
+    #Música de fondo:
+    play music msc2 volume 0.3 fadein 1.0
 
     # Muestra una imagen de fondo: Aquí se usa un marcador de posición por
     # defecto. Es posible añadir un archivo en el directorio 'images' con el
