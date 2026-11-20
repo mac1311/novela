@@ -13,7 +13,7 @@
 ##
 ## El _() que rodea la cadena de texto la señala como traducible.
 
-define config.name = _("novela")
+define config.name = _("Manual para (No) asaltar fortalezas")
 
 
 ## Determina si el título dado más arriba se muestra en el menú principal.
@@ -38,7 +38,7 @@ define gui.about = _p("""
 ## Debe contener solo caracteres ASCII, sin espacios, dos puntos ni puntos y
 ## coma.
 
-define build.name = "novela"
+define build.name = "Manual para (No) asaltar fortalezas"
 
 
 ## Sonidos y música ############################################################
