@@ -64,8 +64,8 @@ image bg camino:
     xsize 1920 ysize 1080 fit "cover"
 
 # Personajes disponibles
-image flynn_young       = "images/assets/flynn_young.jpg"
-image flynn_mad         = "images/assets/flynn_mad.png"
+image flynn_young       = "images/assets/characters/Flynn/flynn_young.jpg"
+image flynn_mad         = "images/assets/characters/Flynn/flynn_mad.png"
 
 # Personajes pendientes (descomentá cuando tengas el archivo)
 # image flynn_normal      = "images/assets/flynn_normal.png"
@@ -240,9 +240,6 @@ label rama_equipo:
     # E22-2
     oliver "Adelante."
 
-    # E22-3
-    oliver "Adelante."
-
     # E22-4
     # hide wanda_normal
     # hide oliver_normal
@@ -345,7 +342,7 @@ label rama_orkenhaimer:
     # show wanda_normal at center
     # show oliver_normal at right
 
-    narrador "Después de seguir la cadena de rumores llegan hasta un orco llamado Orkenhaimer, el legendario orco genio ecplactómano con un arsenal infinito."
+    narrador "Después de seguir la cadena de rumores llegan hasta un orco llamado Orkenhaimer, el legendario orco genio pirómano con un arsenal infinito."
     narrador "Ahora la tarea que tienen en sus manos es lograr convencerlo y reclutarlo."
 
     # E27-2 / D03_A
