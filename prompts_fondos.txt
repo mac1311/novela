@@ -1,0 +1,131 @@
+PROMPTS PARA GENERAR FONDOS — Manual para (No) Asaltar Fortalezas
+==================================================================
+
+ESTILO BASE (incluirlo en TODOS los prompts para mantener coherencia visual):
+"2D digital painting, visual novel background, medieval fantasy, painterly style,
+warm and detailed illustration, wide landscape format 16:9, no characters, no text"
+
+Guardá cada imagen con el nombre exacto indicado en la carpeta game/images/bg/
+==================================================================
+
+
+--- bg_callejon.jpg ---
+ESCENA: E01 — Callejón donde vive Flynn (prólogo)
+PROMPT:
+A narrow medieval fantasy back alley at dusk, cobblestone floor wet with recent
+rain, wooden buildings leaning over both sides, dim lanterns casting warm orange
+light, laundry lines between windows, wanted posters peeling off a brick wall,
+a few scattered coins and a lockpick on the ground. Mood: gritty but slightly
+comedic. 2D digital painting, visual novel background, medieval fantasy,
+painterly style, warm and detailed illustration, wide landscape format 16:9,
+no characters, no text.
+
+
+--- bg_ciudad.jpg ---
+ESCENA: E02.1 — Ciudad del conde Marcus (presentación del villano)
+PROMPT:
+A grand medieval fantasy city plaza under a clear afternoon sky, opulent stone
+buildings with banners bearing a noble crest, wealthy citizens in fine clothes,
+a large fountain in the center, an ornate castle visible in the background on a
+hill. The city looks prosperous but arrogant. Mood: pompous, slightly satirical.
+2D digital painting, visual novel background, medieval fantasy, painterly style,
+warm and detailed illustration, wide landscape format 16:9, no characters, no text.
+
+
+--- bg_taberna.jpg ---
+ESCENA: E20, E26 — Taberna del centro de la ciudad (reclutamiento y plan B)
+PROMPT:
+Interior of a cozy but rowdy medieval fantasy tavern, wooden tables and benches,
+large fireplace crackling, barrels of ale stacked along the walls, candles and
+lanterns hanging from the ceiling, various weapons and shields as decoration,
+the bar counter visible in the background with bottles and mugs. Mood: warm,
+lively, slightly chaotic. 2D digital painting, visual novel background, medieval
+fantasy, painterly style, wide landscape format 16:9, no characters, no text.
+
+
+--- bg_castillo_ext.jpg ---
+ESCENA: E23, E24, E25, E27-6 — Exterior del castillo del conde (múltiples asaltos)
+PROMPT:
+Exterior of an imposing medieval fantasy castle at night, tall stone walls with
+torches lit along the battlements, a large iron-studded wooden gate in the center,
+guards towers on each side, a stone path leading to the entrance, moonlight casting
+dramatic shadows. Mood: intimidating but slightly absurd, like a heist movie set.
+2D digital painting, visual novel background, medieval fantasy, painterly style,
+wide landscape format 16:9, no characters, no text.
+
+
+--- bg_taller_orco.jpg ---
+ESCENA: E27-1 al E27-5 — Taller de Orkenhaimer (el orco explosivista)
+PROMPT:
+Interior of a chaotic orc inventor's workshop, cluttered with unstable explosives,
+bubbling chemical vials, blueprints pinned to the walls, shelves overflowing with
+bombs and mechanical contraptions, scorch marks on the walls and ceiling, barrels
+labeled with skull symbols, a large furnace blazing in the corner. Mood: dangerous,
+eccentric, comedic. 2D digital painting, visual novel background, medieval fantasy,
+painterly style, wide landscape format 16:9, no characters, no text.
+
+
+--- bg_mar.jpg ---
+ESCENA: E28-1 — Mar abierto (expedición marítima)
+PROMPT:
+Open ocean at midday from the deck of a small wooden sailing ship, vast blue sea
+stretching to the horizon, white waves, clear sky with a few clouds, ropes and
+wooden planks of the ship deck visible in the foreground. Mood: adventurous,
+slightly absurd. 2D digital painting, visual novel background, medieval fantasy,
+painterly style, wide landscape format 16:9, no characters, no text.
+
+
+--- bg_ciudad_pez.jpg ---
+ESCENA: E28-2, E28-3, E28-4, E28-5, E28-6 — Ciudad submarina de los hombres pez
+PROMPT:
+Underwater ruins of an ancient sunken city, bioluminescent coral and sea plants
+covering the stone buildings, shafts of light filtering down from the surface,
+schools of colorful fish swimming between broken columns, a large ancient stone
+gate partially buried in the seafloor, treasure chests visible in the rubble.
+Mood: magical, mysterious, slightly comedic. 2D digital painting, visual novel
+background, medieval fantasy, painterly style, wide landscape format 16:9,
+no characters, no text.
+
+
+--- bg_castillo_int.jpg ---
+ESCENA: E28-7 — Interior del castillo (infiltración final, rama marítima)
+PROMPT:
+Interior corridor of a medieval fantasy noble castle, stone walls with tapestries
+and torch sconces, a long hallway leading to a heavy iron vault door at the end,
+ornate carpet on the floor, oil paintings of nobles on the walls, dim candlelight.
+Mood: tense, opulent, slightly over-the-top wealthy. 2D digital painting, visual
+novel background, medieval fantasy, painterly style, wide landscape format 16:9,
+no characters, no text.
+
+
+--- bg_carcel.jpg ---
+ESCENA: E11-2 — Calabozo del conde (game over solitario frontal)
+PROMPT:
+Dark and damp medieval dungeon cell, stone walls with iron chains hanging from
+them, a tiny barred window letting in a sliver of moonlight, a pile of hay in
+the corner, water dripping from the ceiling, iron-barred door in the foreground.
+Mood: gloomy but slightly comedic, not too grim. 2D digital painting, visual
+novel background, medieval fantasy, painterly style, wide landscape format 16:9,
+no characters, no text.
+
+
+--- bg_camino.jpg ---
+ESCENA: E10.1, E12-2 — Camino fuera de la ciudad (planeación solitaria y fuga)
+PROMPT:
+A dirt road winding through medieval fantasy countryside at late afternoon,
+rolling hills in the distance, autumn-colored trees on both sides, a wooden
+signpost pointing in different directions, the silhouette of a city wall barely
+visible far in the background. Mood: open, slightly melancholic but lighthearted.
+2D digital painting, visual novel background, medieval fantasy, painterly style,
+wide landscape format 16:9, no characters, no text.
+
+
+==================================================================
+NOTAS:
+- Resolución objetivo: 1920 x 1080 px (16:9)
+- Formato: JPG
+- Si el generador permite negative prompts, agregá: "characters, people, text,
+  watermark, blurry, low quality"
+- Mantené el mismo generador y configuración para todos los fondos y lograr
+  coherencia de estilo entre las imágenes.
+==================================================================

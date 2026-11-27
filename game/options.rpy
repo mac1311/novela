@@ -1,4 +1,4 @@
-﻿## Este archivo contiene opciones que pueden cambiarse para personalizar el
+## Este archivo contiene opciones que pueden cambiarse para personalizar el
 ## juego.
 ##
 ## Las líneas que empiezan con doble '#' son comentarios, no deben ser
@@ -38,7 +38,7 @@ define gui.about = _p("""
 ## Debe contener solo caracteres ASCII, sin espacios, dos puntos ni puntos y
 ## coma.
 
-define build.name = "Manual para (No) asaltar fortalezas"
+define build.name = "ManualParaNoAsaltarFortalezas"
 
 
 ## Sonidos y música ############################################################
