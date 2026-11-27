@@ -1,4 +1,4 @@
-# =============================================================================
+﻿# =============================================================================
 # Manual para (No) Asaltar Fortalezas
 # =============================================================================
 
@@ -23,17 +23,45 @@ image bg boveda:
     "images/bg/bg boveda.jpg"
     xsize 1920 ysize 1080 fit "cover"
 
-# Fondos pendientes (descomentá cuando tengas el archivo)
-# image bg callejon       = "images/bg/bg_callejon.jpg"
-# image bg ciudad         = "images/bg/bg_ciudad.jpg"
-# image bg taberna        = "images/bg/bg_taberna.jpg"
-# image bg castillo_ext   = "images/bg/bg_castillo_ext.jpg"
-# image bg taller_orco    = "images/bg/bg_taller_orco.jpg"
-# image bg mar            = "images/bg/bg_mar.jpg"
-# image bg ciudad_pez     = "images/bg/bg_ciudad_pez.jpg"
-# image bg castillo_int   = "images/bg/bg_castillo_int.jpg"
-# image bg carcel         = "images/bg/bg_carcel.jpg"
-# image bg camino         = "images/bg/bg_camino.jpg"
+image bg callejon:
+    "images/bg/bg callejon.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image bg ciudad:
+    "images/bg/bg ciudad.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image bg taberna:
+    "images/bg/bg taberna.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image bg castillo_ext:
+    "images/bg/bg castillo ext.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image bg taller_orco:
+    "images/bg/bg taller orco.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image bg mar:
+    "images/bg/bg mar.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image bg ciudad_pez:
+    "images/bg/bg ciudad pez.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image bg castillo_int:
+    "images/bg/bg castillo int.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image bg carcel:
+    "images/bg/bg carcel.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image bg camino:
+    "images/bg/bg camino.jpg"
+    xsize 1920 ysize 1080 fit "cover"
 
 # Personajes disponibles
 image flynn_young       = "images/assets/flynn_young.jpg"
@@ -108,8 +136,7 @@ label start:
 label rama_solitario:
 
     # E10.1 — Intro rama solitaria
-    # scene bg camino with fade
-    # show flynn_normal at center
+    scene bg camino with fade
 
     narrador "Flynn ha tomado la decisión de emprender su aventura en solitario, por lo que procede a pensar en el siguiente paso en su plan."
     narrador "Un ataque frontal es bastante arriesgado y acarrea un gran peligro al tener que enfrentarse a todas las fuerzas del conde."
@@ -129,15 +156,13 @@ label rama_solitario:
 label solo_frontal:
 
     # E11-1
-    # scene bg castillo_ext with fade
-    # show flynn_golpeado at center
+    scene bg castillo_ext with fade
 
     narrador "Flynn ha tomado la muy poco sabia decisión de hacer una incursión frontal contra las fuerzas del conde, llegando a la entrada del castillo tocando la puerta y golpeando al primer guardia que lo recibió."
     narrador "Siendo este el escenario, no es sorpresa que el resultado fue que Flynn fue herido de gravedad y aprehendido por los guardias."
 
     # E11-2 — Game Over: Encarcelado
-    # scene bg carcel with fade
-    # show flynn_golpeado at center
+    scene bg carcel with fade
 
     narrador "— FIN — Flynn termina sus días en los calabozos del conde Marcus."
 
@@ -154,14 +179,12 @@ label solo_frontal:
 label solo_sigilo:
 
     # E12-1
-    # scene bg castillo_ext with fade
-    # show flynn_golpeado at center
+    scene bg castillo_ext with fade
 
     narrador "Flynn ha tomado la decisión de entrar de forma sigilosa en el castillo del conde. Lastimosamente, mientras se escabullía por encima de las paredes se ha tropezado con su propio pie y se ha caído, siendo descubierto por los guardias y teniendo que huir de la ciudad para preservar su libertad."
 
     # E12-2 — Final cobarde
-    # scene bg camino with fade
-    # show flynn_golpeado at center
+    scene bg camino with fade
 
     narrador "Flynn huye de la ciudad. En cada esquina aparece un cartel de SE BUSCA con su rostro y una recompensa considerable."
     narrador "— FIN COBARDE — Fuga desesperada de la ciudad."
@@ -183,7 +206,7 @@ label solo_sigilo:
 label rama_equipo:
 
     # E20 — Intro taberna
-    # scene bg taberna with fade
+    scene bg taberna with fade
     # show flynn_normal at left
 
     narrador "Nuestro protagonista ha decidido emprender la búsqueda de un equipo para su incursión, y no hay lugar más ideal para reunir uno que la taberna del centro de la ciudad, lugar donde se reúnen todos los aventureros."
@@ -239,7 +262,7 @@ label rama_equipo:
 label primer_asalto:
 
     # E23-1
-    # scene bg castillo_ext with fade
+    scene bg castillo_ext with fade
     # show flynn_normal at left
     # show wanda_normal at center
     # show oliver_normal at right
@@ -262,7 +285,7 @@ label primer_asalto:
 label d01_ariete:
 
     # E24
-    # scene bg castillo_ext with fade
+    scene bg castillo_ext with fade
     # show flynn_golpeado at left
     # show wanda_normal at right
 
@@ -274,7 +297,7 @@ label d01_ariete:
 label d01_pocion:
 
     # E25
-    # scene bg castillo_ext with fade
+    scene bg castillo_ext with fade
     # show flynn_golpeado at left
     # show wanda_normal at right
 
@@ -290,7 +313,7 @@ label d01_pocion:
 label plan_b:
 
     # E26-1
-    # scene bg taberna with fade
+    scene bg taberna with fade
     # show flynn_normal at left
     # show wanda_normal at center
     # show oliver_normal at right
@@ -317,7 +340,7 @@ label plan_b:
 label rama_orkenhaimer:
 
     # E27-1
-    # scene bg taller_orco with fade
+    scene bg taller_orco with fade
     # show flynn_normal at left
     # show wanda_normal at center
     # show oliver_normal at right
@@ -347,7 +370,7 @@ label rama_orkenhaimer:
 label ork_amenaza:
 
     # E27-3 — Game Over: Desintegrados
-    # scene bg taller_orco with fade
+    scene bg taller_orco with fade
     # show ork_normal at center
 
     narrador "El grupo ha decidido mostrar su poderío y amenazar al orco, y por esto han terminado brutalmente derrotados por los explosivos de Orkenhaimer."
@@ -363,7 +386,7 @@ label ork_amenaza:
 label ork_dinero:
 
     # E27-4
-    # scene bg taller_orco with fade
+    scene bg taller_orco with fade
     # show ork_normal at right
     # show flynn_normal at left
 
@@ -375,7 +398,7 @@ label ork_dinero:
 label ork_arma:
 
     # E27-5
-    # scene bg taller_orco with fade
+    scene bg taller_orco with fade
     # show ork_normal at right
     # show flynn_normal at left
 
@@ -387,13 +410,13 @@ label ork_arma:
 label asalto_orkenhaimer:
 
     # E27-6 — Asalto al castillo con Orkenhaimer
-    # scene bg castillo_ext with fade
+    scene bg castillo_ext with fade
     # show ork_normal at right
 
     narrador "Tras reclutar exitosamente al orco, nuestro grupo emprende su asalto frontal al castillo mandando a volar por los aires a todos los guardias con los explosivos de Orkenhaimer hasta llegar a la bóveda."
 
     # E27-7 — Apertura de la bóveda
-    # scene bg boveda with fade
+    scene bg boveda with fade
     # show oliver_pose at center
 
     narrador "Ya habiendo llegado hasta la bóveda, usaron a Oliver como escudo con su pose legendaria para resguardarse de la explosión y abrir la bóveda."
@@ -402,7 +425,7 @@ label asalto_orkenhaimer:
     narrador "— FIN: EL GRAN GOLPE CON ORKENHAIMER —"
 
     menu:
-        "¿Querés jugar de nuevo?"
+        "¿Quieres jugar de nuevo?"
 
         "Volver al inicio":
             jump start
@@ -415,7 +438,7 @@ label asalto_orkenhaimer:
 label rama_maritima:
 
     # E28-1
-    # scene bg mar with fade
+    scene bg mar with fade
     # show flynn_normal at left
     # show wanda_normal at center
     # show oliver_normal at right
@@ -423,7 +446,7 @@ label rama_maritima:
     narrador "Después de deliberar han decidido ir en búsqueda del artefacto marino. Para esto tuvieron que conseguir (y por conseguir digo robar) equipos de buceo que les permitan adentrarse al fondo del océano."
 
     # E28-2
-    # scene bg ciudad_pez with fade
+    scene bg ciudad_pez with fade
 
     narrador "Ya habiendo encontrado la ciudad perdida en el fondo del mar, se disponen a ir por el artefacto. Pero a lo lejos alcanzan a ver varios ejemplares de una especie de hombres pez que custodian la ciudad y cuidan con su vida el artefacto. Siendo este el caso, el grupo debería:"
 
@@ -466,7 +489,7 @@ label rama_maritima_decision:
 label mar_pelea:
 
     # E28-5 (pelea)
-    # scene bg ciudad_pez with fade
+    scene bg ciudad_pez with fade
 
     narrador "Flynn, Wanda y Oliver han decidido atacar de frente a los guardianes. Por suerte para ellos, son peces de la cintura para arriba, por lo que se limitan a darles aletazos tan fuertes que se sienten como pequeñas caricias."
 
@@ -476,7 +499,7 @@ label mar_pelea:
 label mar_pocion:
 
     # E28-5 (poción)
-    # scene bg ciudad_pez with fade
+    scene bg ciudad_pez with fade
 
     narrador "Por alguna razón han decidido confiar en las pociones de Wanda. Después de arrojarle el frasco a los guardianes se han dado cuenta de que es una poción de respiración, solo que es para respirar en tierra. Por lo que los guardianes han adquirido pulmones y murieron ahogados, dejando vía libre para que recuperen el artefacto."
 
@@ -486,12 +509,12 @@ label mar_pocion:
 label mar_recuperar_artefacto:
 
     # E28-6 — Consiguen el artefacto
-    # scene bg ciudad_pez with fade
+    scene bg ciudad_pez with fade
 
     narrador "Después de lidiar con los sorprendentemente inútiles guardianes, el grupo Rei consigue el artefacto. Resultó ser un sable láser capaz de cortar todo de un tajo. Se disponen a entrar en el castillo."
 
     # E28-7 — Infiltración y final
-    # scene bg castillo_int with fade
+    scene bg castillo_int with fade
 
     narrador "Habiendo cortado la puerta de entrada y varios guardias en el camino, nuestro grupo llega hasta la bóveda y corta la puerta, dándoles acceso al botín y consiguiendo su objetivo."
 
