@@ -1,0 +1,48 @@
+graph TD
+    %% Estilos de nodos
+    classDef decisionDebil fill:#ffeaa7,stroke:#fdcb6e,stroke-width:2px,color:#2d3436;
+
+    %% Decisión Inicial
+    INICIO([INICIO: Prólogo en el Callejón]) --> D00{D00: Decisión Inicial de Flynn}
+    
+    %% Rama en Solitario
+    D00 -- Opción A: Robar el castillo solo --> D_SOLO{D_SOLO: Método de asalto en solitario}
+    D_SOLO -- Opción 1: Atacar de frente --> F_SOLO_1([F_SOLO_1: Game Over - Encarcelado de inmediato])
+    D_SOLO -- Opción 2: Infiltrarse en sigilo --> E_SOLO_SIGILO[E_SOLO_SIGILO: Descubierto por los guardias]
+    E_SOLO_SIGILO --> F_SOLO_2([F_SOLO_2: Final Cobarde - Fuga desesperada de la ciudad])
+
+    %% Conexión a la Rama en Equipo
+    D00 -- Opción B: Buscar un equipo --> E01[E01: El Plan en la Taberna]
+    
+    %% ==========================================
+    %% ESTRUCTURA PRINCIPAL
+    %% ==========================================
+    E01 --> D01{D01: Entrada al Castillo}
+    
+    D01 -- Opción A: Usar a Oliver de Ariete --> E02[E02: Asalto Frontal Cómico]
+    D01 -- Opción B: Poción de Sigilo de Wanda --> E03[E03: Infiltración Fallida]
+    
+    E02 --> D02{D02: Ruta de Refuerzo}
+    E03 --> D02
+    
+    D02 -- Opción A: Buscar a Orkenhaimer --> E04[E04: Taller de Orkenhaimer]
+    D02 -- Opción B: Expedición al Mar --> E05[E05: Ruta Artefacto Marino]
+    
+    %% Rama Orkenhaimer -> Asalto al Castillo
+    E04 --> D03_A{D03_A: Negociación con Orkenhaimer}
+    D03_A -- Opción 1: Amenazarlo --> F00([F00: Game Over - Desintegrados por Orkenhaimer])
+    D03_A -- Opción 2: Ofrecerle dinero para investigación --> E06_A[E06_A: Asalto al Castillo]
+    D03_A -- Opción 3: Oportunidad de probar su arma --> E06_A
+    
+    E06_A --> F01_A([F01_A: Final Asalto - El Gran Golpe con Orkenhaimer])
+
+    %% Rama Marítima -> Infiltración en el Castillo
+    E05 --> D03_B{D03_B: ¿Cómo enfrentar a los enemigos?}
+    D03_B -- Opción 1: Pedir ayuda a Oliva / No hace nada --> D03_B
+    D03_B -- Opción 2: Pelear con los enemigos --> E06_B[E06_B: Infiltración en el Castillo]
+    D03_B -- Opción 3: Lanzarles poción de respiración bajo el agua --> E06_B
+    
+    E06_B --> F01_B([F01_B: Final Infiltración - Robo Silencioso con Artefacto])
+
+    %% Aplicación de clase a las decisiones débiles
+    class D01,D03_A,D03_B decisionDebil;
