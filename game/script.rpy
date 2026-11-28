@@ -51,6 +51,14 @@ image cg taberna_pelea:
     "images/assets/characters/Oliva/oliva_figting.jpg"
     xsize 1920 ysize 1080 fit "contain"
 
+image bg ariete_humano:
+    "images/assets/characters/Oliva/ariete_humano.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image bg ariete_humano_caida:
+    "images/assets/characters/Oliva/ariete_humano_faling.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
 image bg castillo_ext:
     "images/bg/bg castillo ext.jpg"
     xsize 1920 ysize 1080 fit "cover"
@@ -96,9 +104,13 @@ transform pos_der:
 # Personajes disponibles
 image flynn_young       = "images/assets/characters/Flynn/flynn_young.jpg"
 
+image flynn_normal:
+    "images/assets/characters/Flynn/serious_flynn.png"
+    zoom 0.48
+
 image flynn_mad:
-    "images/assets/characters/Flynn/flynn_mad.png"
-    zoom 1.35
+    "images/assets/characters/Flynn/angry_flynn.png"
+    zoom 0.48
 
 image oliver_normal:
     "images/assets/characters/Oliva/serious_oliva.png"
@@ -136,8 +148,12 @@ image wanda_shy:
     "images/assets/characters/Wanda/shy_wanda_upper half.png"
     zoom 0.48
 
+image tabernero_normal:
+    "images/assets/characters/bartender/bartender.png"
+    crop (0, 0, 1792, 1915)
+    zoom 0.38
+
 # Personajes pendientes (descomentá cuando tengas el archivo)
-# image flynn_normal      = "images/assets/characters/Flynn/flynn_normal.png"
 # image flynn_golpeado    = "images/assets/characters/Flynn/flynn_golpeado.png"
 
 # =============================================================================
@@ -181,7 +197,7 @@ label start:
     # -------------------------------------------------------------------------
 
     scene bg boveda_magica with fade
-    show flynn_young at center
+    show flynn_normal at pos_centro with dissolve
 
     menu:
         "¿Qué hace Flynn?"
@@ -201,6 +217,7 @@ label rama_solitario:
 
     # E10.1 — Intro rama solitaria
     scene bg camino with fade
+    show flynn_normal at pos_centro with dissolve
 
     narrador "Flynn ha tomado la decisión de emprender su aventura en solitario, por lo que procede a pensar en el siguiente paso en su plan."
     narrador "Un ataque frontal es bastante arriesgado y acarrea un gran peligro al tener que enfrentarse a todas las fuerzas del conde."
@@ -221,13 +238,14 @@ label solo_frontal:
 
     # E11-1
     scene bg castillo_ext with fade
-    show flynn_mad at center with dissolve
+    show flynn_mad at pos_centro with dissolve
 
     narrador "Flynn ha tomado la muy poco sabia decisión de hacer una incursión frontal contra las fuerzas del conde, llegando a la entrada del castillo tocando la puerta y golpeando al primer guardia que lo recibió."
     narrador "Siendo este el escenario, no es sorpresa que el resultado fue que Flynn fue herido de gravedad y aprehendido por los guardias."
 
     # E11-2 — Game Over: Encarcelado
     scene bg carcel with fade
+    show flynn_mad at pos_centro with dissolve
 
     narrador "— FIN — Flynn termina sus días en los calabozos del conde Marcus."
 
@@ -245,11 +263,13 @@ label solo_sigilo:
 
     # E12-1
     scene bg castillo_ext with fade
+    show flynn_normal at pos_centro with dissolve
 
     narrador "Flynn ha tomado la decisión de entrar de forma sigilosa en el castillo del conde. Lastimosamente, mientras se escabullía por encima de las paredes se ha tropezado con su propio pie y se ha caído, siendo descubierto por los guardias y teniendo que huir de la ciudad para preservar su libertad."
 
     # E12-2 — Final cobarde
     scene bg camino with fade
+    show flynn_mad at pos_centro with dissolve
 
     narrador "Flynn huye de la ciudad. En cada esquina aparece un cartel de SE BUSCA con su rostro y una recompensa considerable."
     narrador "— FIN COBARDE — Fuga desesperada de la ciudad."
@@ -272,7 +292,7 @@ label rama_equipo:
 
     # E20 — Intro taberna
     scene bg taberna with fade
-    # show flynn_normal at left
+    show flynn_normal at pos_centro with dissolve
 
     narrador "Nuestro protagonista ha decidido emprender la búsqueda de un equipo para su incursión, y no hay lugar más ideal para reunir uno que la taberna del centro de la ciudad, lugar donde se reúnen todos los aventureros."
 
@@ -288,7 +308,7 @@ label rama_equipo:
 
     # E21-2 — Flynn convence a Oliver
     scene bg taberna with fade
-    # show flynn_normal at pos_centro
+    show flynn_normal at pos_centro with dissolve
     show oliver_normal at pos_der with dissolve
 
     flynn "Oye, grandulón. Suelta al pobre hombre antes de que le arruines la garganta… Tengo una oferta que paga mucho más que cincuenta monedas."
@@ -344,7 +364,7 @@ label primer_asalto:
     # E23-1
     scene bg castillo_ext with fade
     show wanda_normal at pos_izq with dissolve
-    # show flynn_normal at pos_centro
+    show flynn_normal at pos_centro with dissolve
     show oliver_thinking at pos_der with dissolve
 
     narrador "Después de unas semanas de ardua planeación nuestro grupo ha conseguido concretar su plan. Primero, para el plan A están decidiendo entre dos opciones:"
@@ -364,14 +384,44 @@ label primer_asalto:
 
 label d01_ariete:
 
-    # E24
+    # E24-1 — Flynn explica el plan del ariete humano
     scene bg castillo_ext with fade
-    show wanda_shy at pos_izq with dissolve
-    show flynn_mad at pos_centro with dissolve
-    show oliver_pose at pos_der with dissolve
-    # show flynn_golpeado at pos_centro
+    show wanda_normal at pos_izq with dissolve
+    show flynn_normal at pos_centro with dissolve
+    show oliver_normal at pos_der with dissolve
 
-    narrador "Habiéndose decidido por la primera opción, usaron a Oliver en su pose legendaria para reventar la puerta del castillo. Lo que no pensaron es que para reventar la puerta del castillo tienen que tener la fuerza física suficiente para cargarlo y atravesar la puerta, fuerza la cual no tenían."
+    flynn "Escuchen bien, porque este plan es una obra maestra. Oliver, tu pose dorada te vuelve completamente indestructible, ¿verdad?"
+    oliver "Así es. Cuando contraigo cada fibra de mi cuerpo, ni una catapulta podría hacerme un rasguño. El único detalle es que quedo inmóvil."
+    flynn "¡Exacto! Por eso Wanda y yo te cargaremos en horizontal y te usaremos como un ariete humano para reventar esa puerta de un solo golpe."
+
+    hide wanda_normal
+    show wanda_shy at pos_izq with dissolve
+
+    wanda "Espera, Flynn… ¿estás seguro de esto? Oliver parece pesar como un caballo… o dos."
+    flynn "¡Pura física básica, Wanda! Un poco de impulso y entraremos como si nada. ¡Oliver, activa tu pose!"
+
+    hide oliver_normal
+    show oliver_pose at pos_der with dissolve
+
+    oliver "Contemplen… el pináculo de la evolución humana."
+
+    # E24-2 — Cargando a Oliver
+    scene bg ariete_humano with fade
+
+    narrador "Con más entusiasmo que sentido común, Flynn y Wanda logran levantar a la estatua dorada de ciento cincuenta kilos de puro músculo."
+    flynn "¡Agh…! ¡Maldita sea, Oliver! ¿Qué desayunas, ladrillos?!"
+    wanda "¡Mis brazos… no siento los brazos! ¡Creo que me va a estallar la espalda!"
+    oliver "Mantengan la postura, muchachos. Un cuerpo perfecto exige una carga digna. ¡Ahora corran hacia la puerta!"
+    flynn "¿¡Correr?! ¡Apenas puedo respirar…!"
+
+    # E24-3 — La caída
+    scene bg ariete_humano_caida with vpunch
+
+    narrador "A los dos pasos, las piernas de Flynn y Wanda ceden al mismo tiempo y ambos se desploman de cara contra el suelo bajo el peso inamovible de su compañero."
+    wanda "¡Ayy… mi sombrero! ¡Y mis pociones…!"
+    flynn "¡Quítate de encima, Oliver… me estás aplastando las costillas!"
+    oliver "Lo lamento, líder. No puedo desactivar la pose hasta relajar cada músculo… y además, el plan fue tuyo."
+    narrador "Lo que Flynn no calculó es que, para usar a un fisicoculturista invulnerable como ariete, primero hay que tener la fuerza para cargarlo. Humillados y adoloridos, no les queda más remedio que retirarse."
 
     jump plan_b
 
@@ -408,11 +458,17 @@ label plan_b:
 
     hide wanda_shy
     show wanda_normal at pos_izq with dissolve
+    hide flynn_mad
+    show flynn_normal at pos_centro with dissolve
     hide oliver_normal
     show oliver_thinking at pos_der with dissolve
 
     narrador "Decididos a no darse por vencidos, se acercan a la barra. Si alguien en esta ciudad escucha rumores sobre reliquias raras y genios peligrosos, es el tabernero."
     flynn "Oye, amigo… una pregunta puramente hipotética. Si alguien quisiera atravesar una puerta enorme y supuestamente impenetrable —digamos, de una vieja ruina—, ¿qué usaría?"
+
+    hide oliver_thinking with dissolve
+    show tabernero_normal at pos_der with dissolve
+
     tabernero "¿Una «vieja ruina» en la colina del conde Marcus? Tranquilos, muchachos, no me importa a quién le roben mientras no me rompan más sillas."
     tabernero "Si de verdad buscan algo capaz de abrir lo impenetrable, solo he oído de dos opciones en todo el reino… y las dos suenan a suicidio."
     tabernero "La primera está en una ciudad hundida en el fondo del mar: unos hombres pez custodian un artefacto legendario capaz de cortar cualquier material de un solo tajo."
@@ -487,7 +543,7 @@ label ork_dinero:
 
     # E27-4
     scene bg taller_orco with fade
-    # show flynn_normal at pos_izq
+    show flynn_normal at pos_izq with dissolve
     show ork_happy at pos_der with dissolve
 
     narrador "Después de una no muy larga deliberación, decidieron hablar con el orco en el idioma universal: el dinero. El orco consideró su oferta y decidió ayudarlos."
@@ -499,7 +555,7 @@ label ork_arma:
 
     # E27-5
     scene bg taller_orco with fade
-    # show flynn_normal at pos_izq
+    show flynn_normal at pos_izq with dissolve
     show ork_happy at pos_der with dissolve
 
     narrador "Tal parece que los orcos maniáticos de las explosiones tienen también su lado vanidoso. Tras convencerlo de demostrar el poder de su obra maestra, el orco está más que contento de ayudar."
@@ -511,6 +567,7 @@ label asalto_orkenhaimer:
 
     # E27-6 — Asalto al castillo con Orkenhaimer
     scene bg castillo_ext with fade
+    show flynn_normal at pos_izq with dissolve
     show ork_happy at pos_der with dissolve
 
     narrador "Tras reclutar exitosamente al orco, nuestro grupo emprende su asalto frontal al castillo mandando a volar por los aires a todos los guardias con los explosivos de Orkenhaimer hasta llegar a la bóveda."
@@ -546,7 +603,7 @@ label rama_maritima:
     # E28-1
     scene bg mar with fade
     show wanda_normal at pos_izq with dissolve
-    # show flynn_normal at pos_centro
+    show flynn_normal at pos_centro with dissolve
     show oliver_normal at pos_der with dissolve
 
     narrador "Después de deliberar han decidido ir en búsqueda del artefacto marino. Para esto tuvieron que conseguir (y por conseguir digo robar) equipos de buceo que les permitan adentrarse al fondo del océano."
@@ -629,7 +686,7 @@ label mar_recuperar_artefacto:
     # E28-6 — Consiguen el artefacto
     scene bg ciudad_pez with fade
     show wanda_normal at pos_izq with dissolve
-    # show flynn_normal at pos_centro
+    show flynn_normal at pos_centro with dissolve
     show oliver_thinking at pos_der with dissolve
 
     narrador "Después de lidiar con los sorprendentemente inútiles guardianes, el grupo Rei consigue el artefacto. Resultó ser un sable láser capaz de cortar todo de un tajo. Se disponen a entrar en el castillo."
@@ -641,7 +698,7 @@ label mar_recuperar_artefacto:
 
     scene bg boveda_magica with fade
     show wanda_normal at pos_izq with dissolve
-    # show flynn_normal at pos_centro
+    show flynn_normal at pos_centro with dissolve
     show oliver_normal at pos_der with dissolve
 
     narrador "— FIN: ROBO SILENCIOSO CON ARTEFACTO —"
