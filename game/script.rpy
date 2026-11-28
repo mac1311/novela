@@ -1,12 +1,14 @@
-﻿# =============================================================================
+# =============================================================================
 # Manual para (No) Asaltar Fortalezas
 # =============================================================================
 
-define narrador = Character(None, what_color="#f0e8d0")
-define flynn    = Character("Flynn")
-define wanda    = Character("Wanda")
-define oliver   = Character("Oliver")
-define ork      = Character("Orkenhaimer", color="#ffffff")
+define narrador    = Character(None, what_color="#f0e8d0")
+define flynn       = Character("Flynn")
+define wanda       = Character("Wanda")
+define oliver      = Character("Oliver")
+define ork         = Character("Orkenhaimer", color="#ffffff")
+define contratista = Character("Contratista")
+define tabernero   = Character("Tabernero")
 
 # --------------- Imágenes ---------------
 
@@ -23,6 +25,10 @@ image bg boveda:
     "images/bg/bg boveda.jpg"
     xsize 1920 ysize 1080 fit "cover"
 
+image bg boveda_magica:
+    "images/bg/bg boveda magica.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
 image bg callejon:
     "images/bg/bg callejon.jpg"
     xsize 1920 ysize 1080 fit "cover"
@@ -34,6 +40,16 @@ image bg ciudad:
 image bg taberna:
     "images/bg/bg taberna.jpg"
     xsize 1920 ysize 1080 fit "cover"
+
+image bg taberna_oscuro:
+    "images/bg/bg taberna.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+    matrixcolor BrightnessMatrix(-0.35)
+    blur 8
+
+image cg taberna_pelea:
+    "images/assets/characters/Oliva/oliva_figting.jpg"
+    xsize 1920 ysize 1080 fit "contain"
 
 image bg castillo_ext:
     "images/bg/bg castillo ext.jpg"
@@ -63,18 +79,66 @@ image bg camino:
     "images/bg/bg camino.jpg"
     xsize 1920 ysize 1080 fit "cover"
 
+# --------------- Posiciones (espacio para 3 personajes) ---------------
+
+transform pos_izq:
+    xcenter 0.18
+    yalign 1.0
+
+transform pos_centro:
+    xcenter 0.50
+    yalign 1.0
+
+transform pos_der:
+    xcenter 0.82
+    yalign 1.0
+
 # Personajes disponibles
 image flynn_young       = "images/assets/characters/Flynn/flynn_young.jpg"
-image flynn_mad         = "images/assets/characters/Flynn/flynn_mad.png"
+
+image flynn_mad:
+    "images/assets/characters/Flynn/flynn_mad.png"
+    zoom 1.35
+
+image oliver_normal:
+    "images/assets/characters/Oliva/serious_oliva.png"
+    zoom 0.38
+
+image oliver_thinking:
+    "images/assets/characters/Oliva/thinking_oliva.png"
+    zoom 0.38
+
+image oliver_pose:
+    "images/assets/characters/Oliva/golden_oliva.png"
+    zoom 0.40
+
+image ork_normal:
+    "images/assets/characters/Orkenhaimer/Serious_orkenhaimer.png"
+    zoom 0.38
+
+image ork_happy:
+    "images/assets/characters/Orkenhaimer/happy_orkenhaimer.png"
+    zoom 0.38
+
+image monster_green:
+    "images/assets/characters/monsters/green_monster.png"
+    zoom 0.38
+
+image monster_blue:
+    "images/assets/characters/monsters/blue_monster.png"
+    zoom 0.38
+
+image wanda_normal:
+    "images/assets/characters/Wanda/serious_wanda_upperhalf.png"
+    zoom 0.48
+
+image wanda_shy:
+    "images/assets/characters/Wanda/shy_wanda_upper half.png"
+    zoom 0.48
 
 # Personajes pendientes (descomentá cuando tengas el archivo)
-# image flynn_normal      = "images/assets/flynn_normal.png"
-# image flynn_golpeado    = "images/assets/flynn_golpeado.png"
-# image wanda_normal      = "images/assets/wanda_normal.png"
-# image oliver_normal     = "images/assets/oliver_normal.png"
-# image oliver_pose       = "images/assets/oliver_pose.png"
-# image ork_normal        = "images/assets/ork_normal.png"
-# image conde_normal      = "images/assets/conde_normal.png"
+# image flynn_normal      = "images/assets/characters/Flynn/flynn_normal.png"
+# image flynn_golpeado    = "images/assets/characters/Flynn/flynn_golpeado.png"
 
 # =============================================================================
 # INICIO
@@ -107,7 +171,7 @@ label start:
     # E02.2 — Presentación del plan y la bóveda
     # -------------------------------------------------------------------------
 
-    scene bg boveda with fade
+    scene bg boveda_magica with fade
 
     narrador "Flynn ha decidido robar el tesoro del conde, pero este está resguardado en una bóveda en lo más profundo de su castillo, por lo que Flynn debe comenzar a planear su atraco."
     narrador "El primer paso es decidir si vale la pena formar un equipo (teniendo que dividir las ganancias pero contando con las habilidades de tus compañeros) o hacerlo solo (mayor riesgo para el torpe Flynn pero todas las ganancias son para él)."
@@ -116,7 +180,7 @@ label start:
     # E02.3 / D00 — Decisión inicial
     # -------------------------------------------------------------------------
 
-    scene bg boveda with fade
+    scene bg boveda_magica with fade
     show flynn_young at center
 
     menu:
@@ -157,6 +221,7 @@ label solo_frontal:
 
     # E11-1
     scene bg castillo_ext with fade
+    show flynn_mad at center with dissolve
 
     narrador "Flynn ha tomado la muy poco sabia decisión de hacer una incursión frontal contra las fuerzas del conde, llegando a la entrada del castillo tocando la puerta y golpeando al primer guardia que lo recibió."
     narrador "Siendo este el escenario, no es sorpresa que el resultado fue que Flynn fue herido de gravedad y aprehendido por los guardias."
@@ -211,43 +276,61 @@ label rama_equipo:
 
     narrador "Nuestro protagonista ha decidido emprender la búsqueda de un equipo para su incursión, y no hay lugar más ideal para reunir uno que la taberna del centro de la ciudad, lugar donde se reúnen todos los aventureros."
 
-    # E21-1 — Reclutamiento de Wanda (presentación)
-    # show wanda_normal at right
+    # E21-1 — Pelea de Oliver por un pago incumplido
+    scene bg taberna_oscuro with fade
+    show cg taberna_pelea at truecenter with dissolve
 
-    narrador "Flynn entra en la taberna y fija sus ojos en las únicas dos personas que están por su cuenta: un fisicoculturista y una bruja."
-    narrador "Decidido a reclutarlos, se dirige primero en dirección a la maga que se encuentra en la barra con una jarra de cerveza."
+    narrador "Apenas Flynn cruza la puerta, una jarra sale volando y el bullicio se detiene en seco: un fisicoculturista descomunal sostiene en vilo por el cuello a un hombre aterrado."
+    oliver "¡Un trato es un trato! Cargué tus carretas durante tres días y prometiste cincuenta monedas de oro. ¿Tienes idea de lo caro que es mantener este volumen muscular?"
+    contratista "¡P-pero si solo te faltaron diez monedas! ¡Te juro que mañana te pago el resto!"
+    oliver "Mis suplementos proteicos y aceites de posado de lujo no esperan a mañana. Si no hay oro, al menos servirás de mancuerna."
+    narrador "Flynn observa el espectáculo con una sonrisa oportunista. Alguien con esa fuerza —y tan urgido de dinero— es justo lo que necesita."
 
-    # E21-2
-    flynn "Hola, me llamo Flynn, veo que estás bebiendo por tu cuenta, ¿me puedo sentar a tu lado?"
+    # E21-2 — Flynn convence a Oliver
+    scene bg taberna with fade
+    # show flynn_normal at pos_centro
+    show oliver_normal at pos_der with dissolve
 
-    # E21-3
-    wanda "Hola Flynn, me llamo Wanda. Adelante, siéntate."
+    flynn "Oye, grandulón. Suelta al pobre hombre antes de que le arruines la garganta… Tengo una oferta que paga mucho más que cincuenta monedas."
+    narrador "Oliver deja caer al contratista, quien sale huyendo de la taberna sin mirar atrás, y clava su mirada seria en Flynn."
+    oliver "Habla rápido, muchacho. Mi rutina de entrenamiento es sagrada."
+    flynn "Me llamo Flynn y estoy armando la iniciativa Reivindicadores para el atraco del siglo: vaciar la bóveda del conde Marcus."
+    flynn "Hay tanto oro ahí dentro que podrás comprar suplementos y aceites de posado por el resto de tu vida."
 
-    # E21-4
-    flynn "Mira, me he acercado a hablarte porque estoy formando un equipo, la iniciativa Reivindicadores, y vengo a reclutarte para el trabajo más grande y más importante que alguna vez te han propuesto. Naturalmente también el más riesgoso."
+    hide oliver_normal
+    show oliver_thinking at pos_der with dissolve
 
-    # E21-5
-    wanda "Cuéntame más sobre este trabajo…"
+    oliver "Mmm… la bóveda del conde Marcus. ¿Y cuál es el plan exactamente?"
+    flynn "Todo está calculado: tú pones la fuerza imparable, yo pongo la estrategia y el sigilo. Entrar y salir será pan comido. ¿Qué dices?"
 
-    # E21-6
-    # show oliver_normal at right
+    hide oliver_thinking
+    show oliver_normal at pos_der with dissolve
 
-    narrador "Después de un rato hablando, Flynn convence a Wanda y se une el primer miembro al grupo, por lo que junto a su nueva compañera se acercan al fisicoculturista que se encuentra en la mesa del rincón."
+    oliver "Si el botín es tan grande como prometes, cuenta con mis músculos… y con mi pose absoluta."
 
-    # E22-1
-    flynn "Hola, me llamo Flynn y esta es mi compañera Wanda, ¿te podemos hablar un momento?"
+    # E22-1 — Wanda se acerca apenada tras escuchar la oferta
+    show wanda_shy at pos_izq with dissolve
 
-    # E22-2
-    oliver "Adelante."
+    narrador "Antes de que puedan cerrar el trato con un brindis, alguien carraspea tímidamente detrás de ellos. Es una joven maga con la túnica algo chamuscada y varios frascos humeantes en el cinturón."
+    wanda "Disculpen… de verdad siento interrumpir, pero no pude evitar escuchar que necesitan un equipo y que la paga sería grande."
+    flynn "¿Y tú eres…?"
+    wanda "Me llamo Wanda. Me da un poco de pena pedirlo, pero mis últimos experimentos de alquimia salieron… algo mal, y me expulsaron de mi antiguo grupo."
+    wanda "Acumulé una deuda enorme por los daños y necesito un gran golpe para pagarla. Mis pociones son muy útiles en un atraco, lo prometo… casi siempre."
 
-    # E22-4
-    # hide wanda_normal
-    # hide oliver_normal
+    hide oliver_normal
+    show oliver_thinking at pos_der with dissolve
+
+    oliver "¿«Casi siempre»?"
+    flynn "Bueno, una maga desesperada y un tanque invulnerable. ¡Bienvenida a los Reivindicadores, Wanda!"
+
+    # E22-2 — Presentación del grupo completo
+    hide wanda_shy
+    show wanda_normal at pos_izq with dissolve
 
     narrador "Al cabo de un rato de charlar, nuestro grupo de aventureros estaba completo."
     narrador "Flynn: el líder del equipo y un ágil pero torpe ladrón."
-    narrador "Wanda: la maga de las pociones impredecibles, que lo único más loco que su personalidad son los efectos de su alquimia."
     narrador "Oliver: la fuerza bruta, un fisicoculturista que ha adquirido la invulnerabilidad en su pose especial a través de la contracción de cada uno de sus músculos."
+    narrador "Wanda: la maga de las pociones impredecibles, que lo único más loco que su personalidad son los efectos de su alquimia."
 
     jump primer_asalto
 
@@ -260,9 +343,9 @@ label primer_asalto:
 
     # E23-1
     scene bg castillo_ext with fade
-    # show flynn_normal at left
-    # show wanda_normal at center
-    # show oliver_normal at right
+    show wanda_normal at pos_izq with dissolve
+    # show flynn_normal at pos_centro
+    show oliver_thinking at pos_der with dissolve
 
     narrador "Después de unas semanas de ardua planeación nuestro grupo ha conseguido concretar su plan. Primero, para el plan A están decidiendo entre dos opciones:"
     narrador "La primera: Un ataque frontal usando la invulnerabilidad de Oliver para penetrar el castillo."
@@ -283,8 +366,10 @@ label d01_ariete:
 
     # E24
     scene bg castillo_ext with fade
-    # show flynn_golpeado at left
-    # show wanda_normal at right
+    show wanda_shy at pos_izq with dissolve
+    show flynn_mad at pos_centro with dissolve
+    show oliver_pose at pos_der with dissolve
+    # show flynn_golpeado at pos_centro
 
     narrador "Habiéndose decidido por la primera opción, usaron a Oliver en su pose legendaria para reventar la puerta del castillo. Lo que no pensaron es que para reventar la puerta del castillo tienen que tener la fuerza física suficiente para cargarlo y atravesar la puerta, fuerza la cual no tenían."
 
@@ -295,8 +380,9 @@ label d01_pocion:
 
     # E25
     scene bg castillo_ext with fade
-    # show flynn_golpeado at left
-    # show wanda_normal at right
+    show wanda_shy at pos_izq with dissolve
+    show flynn_mad at pos_centro with dissolve
+    # show flynn_golpeado at pos_centro
 
     narrador "Nuestro grupo ha decidido confiar en las habilidades alquímicas de Wanda. Lo que no esperaban era que dicha poción de invisibilidad los dejara ciegos de forma momentánea. Todo el mundo es invisible para una persona ciega…"
 
@@ -309,15 +395,30 @@ label d01_pocion:
 
 label plan_b:
 
-    # E26-1
+    # E26-1 — Regreso derrotado a la taberna
     scene bg taberna with fade
-    # show flynn_normal at left
-    # show wanda_normal at center
-    # show oliver_normal at right
+    show wanda_shy at pos_izq with dissolve
+    show flynn_mad at pos_centro with dissolve
+    show oliver_normal at pos_der with dissolve
 
-    narrador "Después del fracaso del plan A, nuestro trío de aventureros decidió irse con el plan B. Para este plan tienen dos opciones que son monumentalmente mejores, por lo que el hecho de que este sea el plan B y no el A solo se explica con la torpeza del líder Flynn."
-    narrador "Opción 1: Seguir la cadena de rumores hasta el gran orco genio de los explosivos. Con su conocimiento y arsenal, entrar a la bóveda debe ser como robarle un dulce a un bebé (o explotarle el dulce a uno)."
-    narrador "Opción 2: Una raza de hombres pez resguarda un artefacto legendario capaz de cortar cualquier material de un tajo. El grupo Rei planea ir y traerlo consigo, y quién sabe, tal vez traigan un plato de sushi también."
+    narrador "Tras el desastroso fracaso del plan A, nuestro trío regresa derrotado a la taberna con el orgullo hecho pedazos."
+    flynn "¡Mierda, ni siquiera nos acercamos a la bóveda! ¡El plan A fue un desastre total!"
+    wanda "Lo siento… de verdad pensaba que esto iba a ser más fácil. A este paso nunca voy a poder pagar mis deudas."
+    oliver "¿Rendirse tras un solo intento fallido? ¡Jamás! Ningún músculo crece sin resistencia. Si la puerta no cedió hoy, solo significa que necesitamos una herramienta más fuerte."
+
+    hide wanda_shy
+    show wanda_normal at pos_izq with dissolve
+    hide oliver_normal
+    show oliver_thinking at pos_der with dissolve
+
+    narrador "Decididos a no darse por vencidos, se acercan a la barra. Si alguien en esta ciudad escucha rumores sobre reliquias raras y genios peligrosos, es el tabernero."
+    flynn "Oye, amigo… una pregunta puramente hipotética. Si alguien quisiera atravesar una puerta enorme y supuestamente impenetrable —digamos, de una vieja ruina—, ¿qué usaría?"
+    tabernero "¿Una «vieja ruina» en la colina del conde Marcus? Tranquilos, muchachos, no me importa a quién le roben mientras no me rompan más sillas."
+    tabernero "Si de verdad buscan algo capaz de abrir lo impenetrable, solo he oído de dos opciones en todo el reino… y las dos suenan a suicidio."
+    tabernero "La primera está en una ciudad hundida en el fondo del mar: unos hombres pez custodian un artefacto legendario capaz de cortar cualquier material de un solo tajo."
+    tabernero "Y si no prefieren morir devorados por hombres pez, siempre pueden probar suerte con el loco de Orkenhaimer, el orco genio de los explosivos. Dicen que al menos una explosión te quema los nervios antes de que te duela."
+
+    narrador "Con dos opciones monumentalmente mejores que el plan A —lo que confirma que la estrategia no es el fuerte de Flynn—, el grupo Rei debe elegir su siguiente paso."
 
     # E26-2 / D02
     menu:
@@ -338,14 +439,16 @@ label rama_orkenhaimer:
 
     # E27-1
     scene bg taller_orco with fade
-    # show flynn_normal at left
-    # show wanda_normal at center
-    # show oliver_normal at right
+    show wanda_normal at pos_izq with dissolve
+    show oliver_normal at pos_centro with dissolve
+    show ork_normal at pos_der with dissolve
 
     narrador "Después de seguir la cadena de rumores llegan hasta un orco llamado Orkenhaimer, el legendario orco genio pirómano con un arsenal infinito."
     narrador "Ahora la tarea que tienen en sus manos es lograr convencerlo y reclutarlo."
 
     # E27-2 / D03_A
+    hide oliver_normal
+    show oliver_thinking at pos_centro with dissolve
     narrador "Antes de hablar con Orkenhaimer el grupo Rei tiene que definir cómo será su acercamiento para facilitar el poder reclutarlo."
     narrador "Opción 1: Demostrar el poderío del grupo y amenazar al orco para que coopere sin exigir una recompensa más que su propia vida."
     narrador "Opción 2: Ofrecerle parte del botín para que financie su investigación sobre explosivos."
@@ -368,7 +471,7 @@ label ork_amenaza:
 
     # E27-3 — Game Over: Desintegrados
     scene bg taller_orco with fade
-    # show ork_normal at center
+    show ork_normal at center with dissolve
 
     narrador "El grupo ha decidido mostrar su poderío y amenazar al orco, y por esto han terminado brutalmente derrotados por los explosivos de Orkenhaimer."
     narrador "¿Por qué creíste que es una buena decisión amenazar a un orco maniático de las explosiones?"
@@ -384,8 +487,8 @@ label ork_dinero:
 
     # E27-4
     scene bg taller_orco with fade
-    # show ork_normal at right
-    # show flynn_normal at left
+    # show flynn_normal at pos_izq
+    show ork_happy at pos_der with dissolve
 
     narrador "Después de una no muy larga deliberación, decidieron hablar con el orco en el idioma universal: el dinero. El orco consideró su oferta y decidió ayudarlos."
 
@@ -396,8 +499,8 @@ label ork_arma:
 
     # E27-5
     scene bg taller_orco with fade
-    # show ork_normal at right
-    # show flynn_normal at left
+    # show flynn_normal at pos_izq
+    show ork_happy at pos_der with dissolve
 
     narrador "Tal parece que los orcos maniáticos de las explosiones tienen también su lado vanidoso. Tras convencerlo de demostrar el poder de su obra maestra, el orco está más que contento de ayudar."
 
@@ -408,15 +511,21 @@ label asalto_orkenhaimer:
 
     # E27-6 — Asalto al castillo con Orkenhaimer
     scene bg castillo_ext with fade
-    # show ork_normal at right
+    show ork_happy at pos_der with dissolve
 
     narrador "Tras reclutar exitosamente al orco, nuestro grupo emprende su asalto frontal al castillo mandando a volar por los aires a todos los guardias con los explosivos de Orkenhaimer hasta llegar a la bóveda."
 
     # E27-7 — Apertura de la bóveda
-    scene bg boveda with fade
-    # show oliver_pose at center
+    scene bg boveda_magica with fade
+    show oliver_pose at pos_centro with dissolve
 
     narrador "Ya habiendo llegado hasta la bóveda, usaron a Oliver como escudo con su pose legendaria para resguardarse de la explosión y abrir la bóveda."
+
+    hide oliver_pose with dissolve
+    show wanda_normal at pos_izq with dissolve
+    show oliver_normal at pos_centro with dissolve
+    show ork_happy at pos_der with dissolve
+
     narrador "El grupo huyó con el botín, consiguiendo su objetivo y finalizando esta historia."
 
     narrador "— FIN: EL GRAN GOLPE CON ORKENHAIMER —"
@@ -436,14 +545,16 @@ label rama_maritima:
 
     # E28-1
     scene bg mar with fade
-    # show flynn_normal at left
-    # show wanda_normal at center
-    # show oliver_normal at right
+    show wanda_normal at pos_izq with dissolve
+    # show flynn_normal at pos_centro
+    show oliver_normal at pos_der with dissolve
 
     narrador "Después de deliberar han decidido ir en búsqueda del artefacto marino. Para esto tuvieron que conseguir (y por conseguir digo robar) equipos de buceo que les permitan adentrarse al fondo del océano."
 
     # E28-2
     scene bg ciudad_pez with fade
+    show monster_green at pos_izq with dissolve
+    show monster_blue at pos_der with dissolve
 
     narrador "Ya habiendo encontrado la ciudad perdida en el fondo del mar, se disponen a ir por el artefacto. Pero a lo lejos alcanzan a ver varios ejemplares de una especie de hombres pez que custodian la ciudad y cuidan con su vida el artefacto. Siendo este el caso, el grupo debería:"
 
@@ -464,10 +575,11 @@ label rama_maritima:
 label mar_oliver:
 
     # E28-4 — Bucle cómico
-    # show oliver_pose at center
+    show oliver_pose at center with dissolve
 
     narrador "Decidido, Oliver se ofrece a encargarse de los guardianes y activa su pose legendaria. Pero no pasa absolutamente nada. ¿Qué pensaste que iba a hacer Oliver? Te recuerdo que no se puede mover cuando está en su pose."
 
+    hide oliver_pose with dissolve
     jump rama_maritima_decision
 
 
@@ -487,6 +599,9 @@ label mar_pelea:
 
     # E28-5 (pelea)
     scene bg ciudad_pez with fade
+    show oliver_normal at pos_izq with dissolve
+    show monster_green at pos_centro with dissolve
+    show monster_blue at pos_der with dissolve
 
     narrador "Flynn, Wanda y Oliver han decidido atacar de frente a los guardianes. Por suerte para ellos, son peces de la cintura para arriba, por lo que se limitan a darles aletazos tan fuertes que se sienten como pequeñas caricias."
 
@@ -497,8 +612,14 @@ label mar_pocion:
 
     # E28-5 (poción)
     scene bg ciudad_pez with fade
+    show wanda_shy at pos_izq with dissolve
+    show monster_green at pos_centro with dissolve
+    show monster_blue at pos_der with dissolve
 
     narrador "Por alguna razón han decidido confiar en las pociones de Wanda. Después de arrojarle el frasco a los guardianes se han dado cuenta de que es una poción de respiración, solo que es para respirar en tierra. Por lo que los guardianes han adquirido pulmones y murieron ahogados, dejando vía libre para que recuperen el artefacto."
+
+    hide monster_green with dissolve
+    hide monster_blue with dissolve
 
     jump mar_recuperar_artefacto
 
@@ -507,6 +628,9 @@ label mar_recuperar_artefacto:
 
     # E28-6 — Consiguen el artefacto
     scene bg ciudad_pez with fade
+    show wanda_normal at pos_izq with dissolve
+    # show flynn_normal at pos_centro
+    show oliver_thinking at pos_der with dissolve
 
     narrador "Después de lidiar con los sorprendentemente inútiles guardianes, el grupo Rei consigue el artefacto. Resultó ser un sable láser capaz de cortar todo de un tajo. Se disponen a entrar en el castillo."
 
@@ -514,6 +638,11 @@ label mar_recuperar_artefacto:
     scene bg castillo_int with fade
 
     narrador "Habiendo cortado la puerta de entrada y varios guardias en el camino, nuestro grupo llega hasta la bóveda y corta la puerta, dándoles acceso al botín y consiguiendo su objetivo."
+
+    scene bg boveda_magica with fade
+    show wanda_normal at pos_izq with dissolve
+    # show flynn_normal at pos_centro
+    show oliver_normal at pos_der with dissolve
 
     narrador "— FIN: ROBO SILENCIOSO CON ARTEFACTO —"
 
