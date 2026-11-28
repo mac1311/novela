@@ -9,6 +9,8 @@ define oliver      = Character("Oliver")
 define ork         = Character("Orkenhaimer", color="#ffffff")
 define contratista = Character("Contratista")
 define tabernero   = Character("Tabernero")
+define guardia1    = Character("Guardia 1")
+define guardia2    = Character("Guardia 2")
 
 # --------------- Imágenes ---------------
 
@@ -87,6 +89,25 @@ image bg camino:
     "images/bg/bg camino.jpg"
     xsize 1920 ysize 1080 fit "cover"
 
+image castillo_flynn:
+    "images/bg/castillo_flynn.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image flynn_caida:
+    "images/bg/Flynn_caida_guardias.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image flynn_encerrado:
+    "images/bg/flynn_encerrado.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image flynn_huida:
+    "images/bg/final_flynn_huyendo.jpg"
+    xsize 1920 ysize 1080 fit "cover"
+
+image flynn_pobre:
+    "images/bg/flynn_pobre.jpg"
+    xsize 1920 ysize 1080 fit "cover"
 # --------------- Posiciones (espacio para 3 personajes) ---------------
 
 transform pos_izq:
@@ -100,6 +121,11 @@ transform pos_centro:
 transform pos_der:
     xcenter 0.82
     yalign 1.0
+
+transform flynn_intro:
+    xcenter 0.50
+    yalign 0.65
+    zoom 1.4
 
 # Personajes disponibles
 image flynn_young       = "images/assets/characters/Flynn/flynn_young.jpg"
@@ -157,19 +183,94 @@ image tabernero_normal:
 # image flynn_golpeado    = "images/assets/characters/Flynn/flynn_golpeado.png"
 
 # =============================================================================
+# PANTALLA DE FINALES
+# =============================================================================
+
+screen pantalla_final(titulo, subtitulo, es_victoria=False, reintentar_label=None):
+    modal True
+    zorder 100
+
+    add "#0d0e15cc"
+
+    $ color_acento = "#f1c40f" if es_victoria else "#e74c3c"
+    $ etiqueta_estado = "★ FINAL COMPLETADO ★" if es_victoria else "✕ GAME OVER ✕"
+
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xmaximum 1100
+        xpadding 70
+        ypadding 55
+        background Solid("#161822ee")
+
+        vbox:
+            spacing 28
+            xalign 0.5
+
+            text etiqueta_estado:
+                xalign 0.5
+                size 26
+                bold True
+                color color_acento
+                kerning 3
+
+            text titulo:
+                xalign 0.5
+                text_align 0.5
+                size 54
+                bold True
+                color "#ffffff"
+                outlines [(2, "#000000", 0, 0)]
+
+            null height 4
+
+            text subtitulo:
+                xalign 0.5
+                text_align 0.5
+                size 30
+                color "#d5d8dc"
+
+            null height 18
+
+            hbox:
+                spacing 35
+                xalign 0.5
+
+                if reintentar_label:
+                    textbutton "Reintentar desde la última decisión":
+                        action [Hide("pantalla_final"), Jump(reintentar_label)]
+                        xpadding 32
+                        ypadding 18
+                        background Solid("#2c3e50")
+                        hover_background Solid(color_acento)
+                        text_size 26
+                        text_color "#ffffff"
+                        text_hover_color "#111111"
+
+                textbutton "Volver al inicio":
+                    action [Hide("pantalla_final"), Jump("start")]
+                    xpadding 32
+                    ypadding 18
+                    background Solid("#2c3e50")
+                    hover_background Solid(color_acento)
+                    text_size 26
+                    text_color "#ffffff"
+                    text_hover_color "#111111"
+
+# =============================================================================
 # INICIO
 # =============================================================================
 
 label start:
 
-    play music "audio/A_Pocketful_of_Mischief.mp3" fadein 1.0
+    #play music "audio/A_Pocketful_of_Mischief.mp3" fadein 1.0
 
     # -------------------------------------------------------------------------
     # E01 — Prólogo: Presentación de Flynn
     # -------------------------------------------------------------------------
 
-    scene bg e01 with fade
-    show flynn_young at center
+    scene flynn_pobre with fade
+
 
     narrador "Flynn es un huérfano que para sobrevivir se dedicó a ser un ladrón. Siendo marginado debido a su profesión, ha estado en una larga búsqueda de la idea que le permita ganar fama, riqueza y pasar a la historia."
     narrador "Aunque no se dejen engañar por su apariencia porque Flynn puede llegar a ser más torpe de lo que parece."
@@ -241,47 +342,45 @@ label solo_frontal:
     show flynn_mad at pos_centro with dissolve
 
     narrador "Flynn ha tomado la muy poco sabia decisión de hacer una incursión frontal contra las fuerzas del conde, llegando a la entrada del castillo tocando la puerta y golpeando al primer guardia que lo recibió."
+
+    guardia1 "¡Ay! ¿Qué es eso?! ¿Quién me acaba de pegar?!"
+    guardia2 "¡Alto ahí! ¿En serio tocaste la puerta principal para asaltar el castillo?!"
+    flynn "Eh... ¿hola? Venía por el tesoro del conde."
+    guardia1 "Atrapen al genio del siglo."
+
     narrador "Siendo este el escenario, no es sorpresa que el resultado fue que Flynn fue herido de gravedad y aprehendido por los guardias."
 
     # E11-2 — Game Over: Encarcelado
-    scene bg carcel with fade
-    show flynn_mad at pos_centro with dissolve
+    scene flynn_encerrado with fade
 
-    narrador "— FIN — Flynn termina sus días en los calabozos del conde Marcus."
-
-    menu:
-        "¿Qué querés hacer?"
-
-        "Reintentar desde la última decisión":
-            jump rama_solitario
-
-        "Volver al inicio":
-            jump start
+    call screen pantalla_final(
+        titulo="Encarcelado de inmediato",
+        subtitulo="Flynn termina sus días en los calabozos del conde Marcus.",
+        es_victoria=False,
+        reintentar_label="rama_solitario"
+    )
 
 
 label solo_sigilo:
 
     # E12-1
-    scene bg castillo_ext with fade
-    show flynn_normal at pos_centro with dissolve
+    scene castillo_flynn with fade
+    narrador "Flynn ha tomado la decisión de entrar de forma sigilosa en el castillo del conde."
 
-    narrador "Flynn ha tomado la decisión de entrar de forma sigilosa en el castillo del conde. Lastimosamente, mientras se escabullía por encima de las paredes se ha tropezado con su propio pie y se ha caído, siendo descubierto por los guardias y teniendo que huir de la ciudad para preservar su libertad."
+    scene flynn_caida with fade
+
+    narrador "Lastimosamente, mientras se escabullía por encima de las paredes se ha tropezado con su propio pie y se ha caído, siendo descubierto por los guardias y teniendo que huir de la ciudad para preservar su libertad."
 
     # E12-2 — Final cobarde
-    scene bg camino with fade
-    show flynn_mad at pos_centro with dissolve
-
+    scene flynn_huida with fade
     narrador "Flynn huye de la ciudad. En cada esquina aparece un cartel de SE BUSCA con su rostro y una recompensa considerable."
-    narrador "— FIN COBARDE — Fuga desesperada de la ciudad."
 
-    menu:
-        "¿Qué querés hacer?"
-
-        "Reintentar desde la última decisión":
-            jump rama_solitario
-
-        "Volver al inicio":
-            jump start
+    call screen pantalla_final(
+        titulo="Final Cobarde: Fuga Desesperada",
+        subtitulo="Flynn escapa del reino con las manos vacías y una orden de captura.",
+        es_victoria=False,
+        reintentar_label="rama_solitario"
+    )
 
 
 # =============================================================================
@@ -526,17 +625,18 @@ label rama_orkenhaimer:
 label ork_amenaza:
 
     # E27-3 — Game Over: Desintegrados
-    scene bg taller_orco with fade
+    scene bg taller_orco with vpunch
     show ork_normal at center with dissolve
 
     narrador "El grupo ha decidido mostrar su poderío y amenazar al orco, y por esto han terminado brutalmente derrotados por los explosivos de Orkenhaimer."
     narrador "¿Por qué creíste que es una buena decisión amenazar a un orco maniático de las explosiones?"
 
-    menu:
-        "¿Qué querés hacer?"
-
-        "Volver a intentar":
-            jump rama_orkenhaimer
+    call screen pantalla_final(
+        titulo="Desintegrados por Orkenhaimer",
+        subtitulo="Nunca amenaces a un orco maniático de los explosivos.",
+        es_victoria=False,
+        reintentar_label="rama_orkenhaimer"
+    )
 
 
 label ork_dinero:
@@ -585,13 +685,11 @@ label asalto_orkenhaimer:
 
     narrador "El grupo huyó con el botín, consiguiendo su objetivo y finalizando esta historia."
 
-    narrador "— FIN: EL GRAN GOLPE CON ORKENHAIMER —"
-
-    menu:
-        "¿Quieres jugar de nuevo?"
-
-        "Volver al inicio":
-            jump start
+    call screen pantalla_final(
+        titulo="El Gran Golpe con Orkenhaimer",
+        subtitulo="A fuerza de explosiones y usando a Oliver de escudo, el equipo Rei vacía la bóveda del conde.",
+        es_victoria=True
+    )
 
 
 # =============================================================================
@@ -701,13 +799,11 @@ label mar_recuperar_artefacto:
     show flynn_normal at pos_centro with dissolve
     show oliver_normal at pos_der with dissolve
 
-    narrador "— FIN: ROBO SILENCIOSO CON ARTEFACTO —"
-
-    menu:
-        "¿Querés jugar de nuevo?"
-
-        "Volver al inicio":
-            jump start
+    call screen pantalla_final(
+        titulo="Robo Silencioso con Artefacto",
+        subtitulo="Con el sable láser submarino, la banda corta cada cerrojo y se lleva el tesoro sin activar una sola alarma.",
+        es_victoria=True
+    )
 
 
 # Fin del script
